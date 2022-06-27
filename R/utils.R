@@ -4,6 +4,9 @@
 #' @noRd
 .genHardReExport <- function(fun) {
   .args <- deparse(eval(str2lang(paste0("args(", fun, ")"))))
+  if (fun == "nlmixr2est::nlmixr2") {
+    .args <- gsub("data *=*[^,]*,", "data = NULL,", .args)
+   }
   .args <- .args[-length(.args)]
   .formalArgs <- as.character(eval(str2lang(paste0("formalArgs(", fun, ")"))))
   .w <- which(.formalArgs == "...")
@@ -61,6 +64,7 @@
                                  "rxode2::expit",
                                  "rxode2::probit",
                                  "rxode2::probitInv",
+                                 "rxode2::logit",
                                  "rxode2::rxSolve",
                                  "rxode2::rxClean",
                                  "rxode2::rxCat",
@@ -108,8 +112,7 @@
                                  "nlmixr2est::random.effects",
                                  "nlmixr2est::.nlmixrNlmeFun",
                                  "nlmixr2est::nlmixr2NlmeControl",
-                                 "nlmixr2est::nlmixr",
-                                 "nlmixr2est::nlmixr2"),
+                                 "nlmixr2est::nlmixr"),
                           hard=c("nlmixr2plot::traceplot",
                                  "nlmixr2est::vpcSim",
                                  "nlmixr2plot::vpcPlot",
@@ -136,3 +139,15 @@
              devtools::package_file("R/hardReexports.R"))
 }
 
+#' @inherit nlmixr2est::nlmixr2
+#' @param ... Additional arguments passed to [nlmixr2est::nlmixr2()].
+#' @export
+nlmixr2 <- function(object, data, est = NULL, control = list(),
+                    table = tableControl(), ..., save = NULL, envir = parent.frame()) {
+  if (missing(data)) {
+    nlmixr2est::nlmixr2(object = object)
+  } else {
+    nlmixr2est::nlmixr2(object = object, data = data, est = est,
+        control = control, table = table, ..., save = save, envir = envir)
+  }
+}

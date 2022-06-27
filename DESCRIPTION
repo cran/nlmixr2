@@ -1,11 +1,11 @@
 Package: nlmixr2
 Title: Nonlinear Mixed Effects Models in Population PK/PD
-Version: 2.0.6
+Version: 2.0.7
 Authors@R: c(person("Matthew","Fidler", role = c("aut", "cre"), email = "matthew.fidler@gmail.com", comment=c(ORCID="0000-0001-8538-6691")),
    person("Yuan", "Xiong", role = "ctb", email = "yuan.xiong@gmail.com"),
    person("Rik", "Schoemaker", role = "ctb", email = "rik.schoemaker@occams.com", comment=c(ORCID="0000-0002-7538-3005")),
    person("Justin", "Wilkins", role = "ctb", email = "justin.wilkins@occams.com", comment=c(ORCID="0000-0002-7099-9396")),
-   person("Wenping", "Wang", role = "aut", email = "wwang8198@gmail.com"),
+   person("Wenping", "Wang", role = "ctb", email = "wwang8198@gmail.com"),
    person("Mirjam","Trame", role = "ctb", email="mirjam.trame@gmail.com"),
    person("Huijuan", "Xu", role="ctb", email="huijuan.xu.pmx@gmail.com"),
    person("John", "Harrold", role="ctb", email="john.m.harrold@gmail.com"),
@@ -21,21 +21,20 @@ Description: Fit and compare nonlinear mixed-effects models in differential
     (Wang, Hallow, and James 2015 <doi:10.1002/psp4.12052>).
 License: GPL (>= 3)
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports: nlmixr2est, nlmixr2extra, rxode2, nlmixr2plot, magrittr
 Depends: nlmixr2data
-Suggests: rmarkdown, knitr, devtools, withr, ggplot2, testthat
+Suggests: rmarkdown, knitr, devtools, ggplot2, testthat, n1qn1, withr
 VignetteBuilder: knitr
 BugReports: https://github.com/nlmixr2/nlmixr2/issues/
-URL: https://nlmixr2.github.io/nlmixr2/,
-        https://github.com/nlmixr2/nlmixr2/
+URL: https://nlmixr2.org/, https://github.com/nlmixr2/nlmixr2/
 NeedsCompilation: no
-Packaged: 2022-05-23 15:42:00 UTC; matt
+Packaged: 2022-06-27 19:48:57 UTC; matt
 Author: Matthew Fidler [aut, cre] (<https://orcid.org/0000-0001-8538-6691>),
   Yuan Xiong [ctb],
   Rik Schoemaker [ctb] (<https://orcid.org/0000-0002-7538-3005>),
   Justin Wilkins [ctb] (<https://orcid.org/0000-0002-7099-9396>),
-  Wenping Wang [aut],
+  Wenping Wang [ctb],
   Mirjam Trame [ctb],
   Huijuan Xu [ctb],
   John Harrold [ctb],
@@ -45,4 +44,4 @@ Author: Matthew Fidler [aut, cre] (<https://orcid.org/0000-0001-8538-6691>),
   Richard Hooijmaijers [ctb]
 Maintainer: Matthew Fidler <matthew.fidler@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-05-24 15:50:02 UTC
+Date/Publication: 2022-06-27 22:20:02 UTC

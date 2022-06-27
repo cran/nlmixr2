@@ -12,14 +12,8 @@ options(huxtable.knit_print_df = FALSE)
 
 ## -----------------------------------------------------------------------------
 ## Load libraries
-library(ggplot2)
 library(nlmixr2)
 str(theo_sd)
-
-ggplot(theo_sd, aes(TIME, DV)) + geom_line(aes(group=ID), col="red") +
-  scale_x_continuous("Time (h)") + scale_y_continuous("Concentration") +
-  labs(title="Theophylline single-dose", subtitle="Concentration vs. time by individual")
-
 
 ## -----------------------------------------------------------------------------
 one.cmt <- function() {
@@ -82,18 +76,6 @@ print(fit2)
 ## -----------------------------------------------------------------------------
 fitN <- nlmixr(one.compartment, theo_sd, list(pnlsTol=0.5), est="nlme")
 print(fitN)
-
-## -----------------------------------------------------------------------------
-plot(fit)
-
-## -----------------------------------------------------------------------------
-print(fit)
-
-## -----------------------------------------------------------------------------
-fit$eta
-
-## -----------------------------------------------------------------------------
-traceplot(fit)
 
 ## -----------------------------------------------------------------------------
 f <- function(){
