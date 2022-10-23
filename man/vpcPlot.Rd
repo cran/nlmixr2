@@ -17,8 +17,8 @@ vpcPlot(
   pred_corr_lower_bnd = 0,
   pi = c(0.05, 0.95),
   ci = c(0.05, 0.95),
-  uloq = NULL,
-  lloq = NULL,
+  uloq = fit$dataUloq,
+  lloq = fit$dataLloq,
   log_y = FALSE,
   log_y_min = 0.001,
   xlab = NULL,
@@ -32,7 +32,9 @@ vpcPlot(
   vpcdb = FALSE,
   verbose = FALSE,
   ...,
-  seed = 1009
+  seed = 1009,
+  idv = "time",
+  cens = FALSE
 )
 }
 \arguments{
@@ -95,6 +97,15 @@ this argument.}
 
 \item{seed}{an object specifying if and how the random number
 generator should be initialized}
+
+\item{idv}{Name of independent variable. For \code{vpcPlot()} and
+\code{vpcCens()} the default is \code{"time"} for \code{vpcPlotTad()} and
+\code{vpcCensTad()} this is \code{"tad"}}
+
+\item{cens}{is a boolean to show if this is a censoring plot or
+not.  When \code{cens=TRUE} this is actually a censoring vpc plot
+(with \code{vpcCens()} and \code{vpcCensTad()}).  When \code{cens=FALSE} this is
+traditional VPC plot (\code{vpcPlot()} and \code{vpcPlotTad()}).}
 }
 \value{
 Simulated dataset (invisibly)
