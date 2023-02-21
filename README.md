@@ -19,6 +19,11 @@ downloads](https://cranlogs.r-pkg.org/badges/nlmixr2)](https://cran.r-project.or
 The goal of nlmixr2 is to support easy and robust nonlinear mixed
 effects models in R
 
+## Blog for more information
+
+For more information about ongoing development, best practices, and news
+about nlmixr2, please see the [nlmixr2 blog](https://blog.nlmixr2.org/).
+
 ## Installation
 
 For all versions of R, we need to have a compiler setup to run `nlmixr2`
@@ -38,13 +43,13 @@ To setup the mac compilers, simply
 1.  Install Xcode from app store
 
 2.  Install gfortran:
-
+    
     1.  Download and install from <https://mac.r-project.org/tools/>
+    
+    2.  Add gfortran directory to the path with: `export
+        PATH=$PATH:/usr/local/gfortran/bin`
 
-    2.  Add gfortran directory to the path with:
-        `export PATH=$PATH:/usr/local/gfortran/bin`
-
-# R package installation
+## R package installation
 
 Installation nlmixr2 itself is easiest in R-4.2.x because no further
 compilation is required and all supporting packages are available. From
@@ -54,17 +59,27 @@ R, run:
 install.packages("nlmixr2",dependencies = TRUE)
 ```
 
-For R-4.0.x and R-4.1.x, the crucial package symengine is currently not
-on CRAN and will have to be installed from MRAN first by running:
+For R-4.0.x and R-4.1.x, the `symengine` package will need to be
+downgraded to run in those earlier `R` versions. This can be done by:
 
 ``` r
-install.packages("symengine", repos="https://cran.microsoft.com/snapshot/2022-01-01/")
+# install.packages("remotes")
+remotes::install_version("symengine", version = "0.1.6")
 ```
 
 followed by:
 
 ``` r
 install.packages("nlmixr2",dependencies = TRUE)
+```
+
+## Checking installation
+
+You can check that your installation is likely setup correctly with the
+following command after installing the `nlmixr2` package:
+
+``` r
+nlmixr2::nlmixr2CheckInstall()
 ```
 
 ## Development version installation
@@ -78,6 +93,7 @@ remotes::install_github("nlmixr2/nlmixr2data")
 remotes::install_github("nlmixr2/lotri")
 remotes::install_github("nlmixr2/rxode2ll")
 remotes::install_github("nlmixr2/rxode2parse")
+remotes::install_github("nlmixr2/rxode2et")
 remotes::install_github("nlmixr2/rxode2")
 remotes::install_github("nlmixr2/nlmixr2est")
 remotes::install_github("nlmixr2/nlmixr2extra")
@@ -100,7 +116,10 @@ versions, please use the `remotes::install_github()` commands above. For
 the stable version, please use the following command:
 
 ``` r
-install.packages(c("nlmixr2", "nlmixr2est", "rxode2", "nlmixr2plot", "nlmixr2data", "lotri", "nlmixr2extra"))
+install.packages(c("dparser", "lotri", "rxode2ll", "rxode2parse",
+                   "rxode2random", "rxode2et", "rxode2",
+                   "nlmixr2data", "nlmixr2est", "nlmixr2extra",
+                   "nlmixr2plot", "nlmixr2", "dparser"))
 ```
 
 ## Example
@@ -113,9 +132,9 @@ library(nlmixr2)
 ## The basic model consiss of an ini block that has initial estimates
 one.compartment <- function() {
   ini({
-    tka <- 0.45 # Log Ka
-    tcl <- 1 # Log Cl
-    tv <- 3.45    # Log V
+    tka <- log(1.57); label("Ka")
+    tcl <- log(2.72); label("Cl")
+    tv <- log(31.5); label("V")
     eta.ka ~ 0.6
     eta.cl ~ 0.3
     eta.v ~ 0.1
@@ -137,38 +156,49 @@ one.compartment <- function() {
 fit <- nlmixr2(one.compartment, theo_sd,  est="saem", saemControl(print=0))
 #> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
 #> 
+#> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
+#> 
+#> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
+#> 
+#> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
+#> 
+#> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
+#> 
+#> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
+#> 
 #> [====|====|====|====|====|====|====|====|====|====] 0:00:00
 print(fit)
-#> ── nlmixr SAEM OBJF by FOCEi approximation ──
+#> ── nlmixr² SAEM OBJF by FOCEi approximation ──
 #> 
 #>  Gaussian/Laplacian Likelihoods: AIC() or $objf etc. 
 #>  FOCEi CWRES & Likelihoods: addCwres() 
 #> 
 #> ── Time (sec $time): ──
 #> 
-#>            setup covariance saem table compress    other
-#> elapsed 0.000909   0.006005 2.09 0.015    0.009 1.185086
+#>            setup covariance  saem table compress    other
+#> elapsed 0.003622   0.098007 6.973   0.1    0.065 3.849371
 #> 
 #> ── Population Parameters ($parFixed or $parFixedDf): ──
 #> 
 #>        Parameter  Est.     SE %RSE Back-transformed(95%CI) BSV(CV%) Shrink(SD)%
-#> tka       Log Ka 0.454  0.196 43.1       1.57 (1.07, 2.31)     71.5   -0.0203% 
-#> tcl       Log Cl  1.02 0.0853  8.4       2.76 (2.34, 3.26)     27.6      3.46% 
-#> tv         Log V  3.45 0.0454 1.32       31.5 (28.8, 34.4)     13.4      9.89% 
-#> add.sd           0.693                               0.693                     
+#> tka           Ka  0.46  0.196 42.7       1.58 (1.08, 2.33)     71.9    -0.291% 
+#> tcl           Cl  1.01 0.0839 8.29       2.75 (2.34, 3.25)     27.0      3.42% 
+#> tv             V  3.45 0.0469 1.36       31.6 (28.8, 34.7)     14.0      10.7% 
+#> add.sd           0.694                               0.694                     
 #>  
 #>   Covariance Type ($covMethod): linFim
 #>   No correlations in between subject variability (BSV) matrix
 #>   Full BSV covariance ($omega) or correlation ($omegaR; diagonals=SDs) 
 #>   Distribution stats (mean/skewness/kurtosis/p-value) available in $shrink 
+#>   Censoring ($censInformation): No censoring
 #> 
 #> ── Fit Data (object is a modified tibble): ──
 #> # A tibble: 132 × 19
 #>   ID     TIME    DV  PRED    RES IPRED   IRES  IWRES eta.ka eta.cl   eta.v    cp
 #>   <fct> <dbl> <dbl> <dbl>  <dbl> <dbl>  <dbl>  <dbl>  <dbl>  <dbl>   <dbl> <dbl>
-#> 1 1      0     0.74  0     0.74   0     0.74   1.07   0.103 -0.491 -0.0820  0   
-#> 2 1      0.25  2.84  3.27 -0.426  3.87 -1.03  -1.48   0.103 -0.491 -0.0820  3.87
-#> 3 1      0.57  6.57  5.85  0.723  6.82 -0.246 -0.356  0.103 -0.491 -0.0820  6.82
+#> 1 1      0     0.74  0     0.74   0     0.74   1.07  0.0988 -0.484 -0.0843  0   
+#> 2 1      0.25  2.84  3.27 -0.433  3.87 -1.03  -1.49  0.0988 -0.484 -0.0843  3.87
+#> 3 1      0.57  6.57  5.85  0.718  6.82 -0.247 -0.356 0.0988 -0.484 -0.0843  6.82
 #> # … with 129 more rows, and 7 more variables: depot <dbl>, center <dbl>,
 #> #   ka <dbl>, cl <dbl>, v <dbl>, tad <dbl>, dosenum <dbl>
 ```

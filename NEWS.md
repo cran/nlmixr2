@@ -1,3 +1,10 @@
+# nlmixr2 2.0.9
+
+* The new function `nlmixr2CheckInstall()` helps to check if your installation
+  is setup correctly with the required compilers and packages.
+
+* This version adds `crayon` as an imported dependency
+
 # nlmixr2 2.0.8
 
 * This release has a bug fix that captures the model name correctly
