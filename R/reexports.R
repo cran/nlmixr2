@@ -60,6 +60,10 @@ rxode2::rxClean
 #' @export
 rxode2::rxCat
 
+#' @importFrom rxode2 rxSetPipingAuto
+#' @export
+rxode2::rxSetPipingAuto
+
 #' @importFrom rxode2 eventTable
 #' @export
 rxode2::eventTable
@@ -71,6 +75,14 @@ rxode2::add.dosing
 #' @importFrom rxode2 add.sampling
 #' @export
 rxode2::add.sampling
+
+#' @importFrom rxode2 rxFun
+#' @export
+rxode2::rxFun
+
+#' @importFrom nlmixr2est nlmixr2AllEst
+#' @export
+nlmixr2est::nlmixr2AllEst
 
 #' @importFrom nlmixr2est pdDiag
 #' @export
@@ -159,6 +171,18 @@ nlmixr2est::groupedData
 #' @importFrom nlmixr2est getData
 #' @export
 nlmixr2est::getData
+
+#' @importFrom rxode2 `model<-`
+#' @export
+rxode2::`model<-`
+
+#' @importFrom rxode2 `ini<-`
+#' @export
+rxode2::`ini<-`
+
+#' @importFrom rxode2 etExpand
+#' @export
+rxode2::etExpand
 
 #' @importFrom rxode2 et
 #' @export

@@ -39,6 +39,7 @@ nlmeControl(
   ci = 0.95,
   sigdig = 4,
   sigdigTable = NULL,
+  muRefCovAlg = TRUE,
   ...
 )
 }
@@ -140,7 +141,7 @@ this is \code{FALSE}.}
    random-effects model for
    these parameters and \code{g1/.../gQ} the grouping structure
    (\code{Q} may be equal to 1, in which case no \code{/} is
-   required). The random effects formula will be repeated 
+   required). The random effects formula will be repeated
    for all levels of grouping, in the case of multiple levels of
    grouping; (ii) a two-sided formula of the form
    \code{r1+...+rn~x1+..+xm}, a list of two-sided formulas of the form
@@ -156,8 +157,8 @@ this is \code{FALSE}.}
    with the grouping factors as names. The order of nesting will be
    assumed the same as the order of the order of the elements in the
    list; (iv) an \code{reStruct} object. See the documentation on
-   \code{pdClasses} for a description of the available \code{pdMat}
-   classes. Defaults to \code{fixed}, 
+   \code{\link[nlme]{pdClasses}} for a description of the available \code{pdMat}
+   classes. Defaults to \code{fixed},
    resulting in all fixed effects having also random effects.}
 
 \item{fixed}{a two-sided linear formula of the form
@@ -176,7 +177,7 @@ this is \code{FALSE}.}
    describing the within-group heteroscedasticity structure. If given as
    a formula, it is used as the argument to \code{varFixed},
    corresponding to fixed variance weights. See the documentation on
-   \code{varClasses} for a description of the available \code{varFunc}
+   \code{\link[nlme]{varClasses}} for a description of the available \code{varFunc}
    classes. Defaults to \code{NULL}, corresponding to homoscedastic
    within-group errors.}
 
@@ -194,11 +195,11 @@ of `random`, `fixed`, `sens`, the nlme object is returned}
 
 The combined1 error type can be described by the following equation:
 
-  y = f + (a + b*f^c)*err
+  \deqn{y = f + (a + b\times f^c) \times \varepsilon}{y = f + (a + b*f^c)*err}
 
 The combined2 error model can be described by the following equation:
 
- y = f + sqrt(a^2 + b^2*(f^c)^2)*err
+ \deqn{y = f + \sqrt{a^2 + b^2\times f^{2\times c}} \times \varepsilon}{y = f + sqrt(a^2 + b^2*(f^c)^2)*err}
 
  Where:
 
@@ -243,6 +244,24 @@ function.  By default this is \code{TRUE}}
 If not specified, then it matches the significant digits in the
 `sigdig` optimization algorithm.  If `sigdig` is NULL, use 3.}
 
+\item{muRefCovAlg}{This controls if algebraic expressions that can
+  be mu-referenced are treated as mu-referenced covariates by:
+
+  1. Creating a internal data-variable `nlmixrMuDerCov#` for each
+     algebraic mu-referenced expression
+
+  2. Change the algebraic expression to `nlmixrMuDerCov# * mu_cov_theta`
+
+  3. Use the internal mu-referenced covariate for saem
+
+  4. After optimization is completed, replace `model({})` with old
+  `model({})` expression
+
+  5. Remove `nlmixrMuDerCov#` from nlmix2 output
+
+In general, these covariates should be more accurate since it
+changes the system to a linear compartment model.  Therefore, by default this is `TRUE`.}
+
 \item{...}{Additional arguments passed to \code{\link[nlmixr2est:nlmixr2NlmeControl]{nlmixr2est::nlmeControl()}}.}
 }
 \value{
@@ -254,6 +273,11 @@ a list with all possible arguments is returned.  The returned list
 is used as the ‘control’ argument to the ‘nlme’ function.
 }
 \examples{
-nlmixr2est::nlmeControl()
+nlmeControl()
 nlmixr2NlmeControl()
+}
+\seealso{
+Other Estimation control: 
+\code{\link[nlmixr2est]{foceiControl}()},
+\code{\link[nlmixr2est]{saemControl}()}
 }
