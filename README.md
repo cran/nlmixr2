@@ -44,8 +44,13 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/nlmixr2)](https://cran.
 downloads](https://cranlogs.r-pkg.org/badges/nlmixr2)](https://cran.r-project.org/package=nlmixr2)
 <!-- badges: end -->
 
-The goal of nlmixr2 is to support easy and robust nonlinear mixed
-effects models in R
+The vision of nlmixr2 is to develop a R-based open-source nonlinear
+mixed-effects modeling software package that can compete with commercial
+pharmacometric tools and is suitable for regulatory submissions.
+
+In short, the goal of nlmixr2 is to support easy and robust nonlinear
+mixed effects models in R. This is supported by [our team and advisory
+committee](https://nlmixr2.org/articles/nlmixr2-team-and-advisory-committee.html)
 
 ## Blog for more information
 
@@ -124,7 +129,6 @@ latest and last version of R (no need to wait for a compile).
 
 ``` r
 install.packages(c("dparser", "nlmixr2data", "lotri", "rxode2ll",
-                   "rxode2parse", "rxode2random", "rxode2et",
                    "rxode2", "nlmixr2est", "nlmixr2extra", "nlmixr2plot",
                    "nlmixr2"),
                  repos = c('https://nlmixr2.r-universe.dev',
@@ -145,7 +149,6 @@ options(repos=c(
   cran = 'https://cloud.r-project.org'
 ))
 install.packages(c("dparser", "nlmixr2data", "lotri", "rxode2ll",
-                   "rxode2parse", "rxode2random", "rxode2et",
                    "rxode2", "nlmixr2est", "nlmixr2extra", "nlmixr2plot",
                    "nlmixr2"))
 
@@ -211,9 +214,6 @@ remotes::install_github("nlmixr2/dparser-R")
 remotes::install_github("nlmixr2/nlmixr2data")
 remotes::install_github("nlmixr2/lotri")
 remotes::install_github("nlmixr2/rxode2ll")
-remotes::install_github("nlmixr2/rxode2parse")
-remotes::install_github("nlmixr2/rxode2random")
-remotes::install_github("nlmixr2/rxode2et")
 remotes::install_github("nlmixr2/rxode2")
 remotes::install_github("nlmixr2/nlmixr2est")
 remotes::install_github("nlmixr2/nlmixr2extra")
@@ -304,9 +304,6 @@ fit <- nlmixr2(one.compartment, theo_sd,  est="saem", saemControl(print=0))
 #> [====|====|====|====|====|====|====|====|====|====] 0:00:00 
 #> 
 #> [====|====|====|====|====|====|====|====|====|====] 0:00:00
-```
-
-``` r
 print(fit)
 #> ── nlmixr² SAEM OBJF by FOCEi approximation ──
 #> 
@@ -315,8 +312,8 @@ print(fit)
 #> 
 #> ── Time (sec $time): ──
 #> 
-#>            setup covariance saem table compress    other
-#> elapsed 0.001151   0.016005 2.87 0.048    0.018 2.366844
+#>           setup covariance  saem table compress    other
+#> elapsed 0.00089   0.007004 4.546  0.05    0.018 1.785106
 #> 
 #> ── Population Parameters ($parFixed or $parFixedDf): ──
 #> 
