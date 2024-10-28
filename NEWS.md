@@ -1,3 +1,10 @@
+# nlmixr2 3.0.1
+
+* Remove `backwardSearch`, `covarSearchAuto` and `forwardSearch`
+  re-exports since they no longer exist in `nlmixr2extra`
+
+* Remove `rxode2parse` suggested dependency
+
 # nlmixr2 3.0.0
 
 * Re-export the new profiling from `nlmixr2extra`

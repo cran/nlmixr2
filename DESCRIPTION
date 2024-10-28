@@ -1,6 +1,6 @@
 Package: nlmixr2
 Title: Nonlinear Mixed Effects Models in Population PK/PD
-Version: 3.0.0
+Version: 3.0.1
 Authors@R: c(person("Matthew","Fidler", role = c("aut", "cre"), email = "matthew.fidler@gmail.com", comment=c(ORCID="0000-0001-8538-6691")),
    person("Yuan", "Xiong", role = "ctb", email = "yuan.xiong@gmail.com"),
    person("Rik", "Schoemaker", role = "ctb", email = "rik.schoemaker@occams.com", comment=c(ORCID="0000-0002-7538-3005")),
@@ -26,12 +26,11 @@ Imports: nlmixr2est (>= 2.2.2), nlmixr2extra (>= 2.0.10), rxode2 (>=
         2.1.3), lotri (>= 0.4.3), nlmixr2plot (>= 2.0.8), magrittr,
         crayon, cli
 Depends: nlmixr2data
-Suggests: rmarkdown, knitr, devtools, ggplot2, testthat, n1qn1,
-        rxode2parse (>= 2.0.19), withr
+Suggests: rmarkdown, knitr, devtools, ggplot2, testthat, n1qn1, withr
 BugReports: https://github.com/nlmixr2/nlmixr2/issues/
 URL: https://nlmixr2.org/, https://github.com/nlmixr2/nlmixr2/
 NeedsCompilation: no
-Packaged: 2024-09-18 18:42:32 UTC; matt
+Packaged: 2024-10-28 20:52:10 UTC; matt
 Author: Matthew Fidler [aut, cre] (<https://orcid.org/0000-0001-8538-6691>),
   Yuan Xiong [ctb],
   Rik Schoemaker [ctb] (<https://orcid.org/0000-0002-7538-3005>),
@@ -46,4 +45,4 @@ Author: Matthew Fidler [aut, cre] (<https://orcid.org/0000-0001-8538-6691>),
   Richard Hooijmaijers [ctb]
 Maintainer: Matthew Fidler <matthew.fidler@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-09-18 19:20:02 UTC
+Date/Publication: 2024-10-28 21:30:02 UTC

@@ -1,10 +1,10 @@
-ecd13415074e72304634af8301807786 *DESCRIPTION
-2fe9239eff61b170ef501362254e777c *NAMESPACE
-a52bcf2340382c161ca3b5c94c00dbfb *NEWS.md
-e6f4f18b06fd9af534ba8f984d5e0631 *R/hardReexports.R
+b9c690b275badd74c98033d051c293eb *DESCRIPTION
+1d176d1bc8b5983c9eedd4b5e14bc152 *NAMESPACE
+9d787afce7950e6e4b19b34fbda51063 *NEWS.md
+5cf91a26e0f8cdff30d8578cb1033e16 *R/hardReexports.R
 e40022c85f217fab5f0d07c2f7376198 *R/nlmixr2CheckInstall.R
 b1cc5b8e463bb58d05499cff783a311d *R/reexports.R
-99ddf3466ae644fd34fe41677c07a9dd *R/utils.R
+490a19dc6d725440a26e4572c3bbc24b *R/utils.R
 82a84f5d9d695755e80e85b8437deed6 *README.md
 eb7a3e6ab1d1685170cb43762a18db6b *inst/CITATION
 4cea061fb5557bf0251e690800b376fd *man/addCwres.Rd
@@ -13,7 +13,6 @@ eb7a3e6ab1d1685170cb43762a18db6b *inst/CITATION
 599c9c586094ac33bf74ec37f496469f *man/bobyqaControl.Rd
 060507b2527648b2d5a781ac8046dcd5 *man/bootplot.Rd
 8330e257b8507867d03ddfcd51a74f21 *man/bootstrapFit.Rd
-e88e725102f3803bf16356db7182d0c9 *man/covarSearchAuto.Rd
 0c63882f7383cd9b306f1771fbcfb768 *man/figures/README-unnamed-chunk-2-1.png
 debf6863e82f6341ad78e4699b5fca2c *man/figures/README-unnamed-chunk-2-10.png
 3b4c4536078768e7be8b87a096cb00f7 *man/figures/README-unnamed-chunk-2-11.png
